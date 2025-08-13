@@ -82,13 +82,13 @@ export const CheckoutPage: React.FC<{
     <Fragment>
       {cartIsEmpty && (
         <div>
-          {'Your '}
-          <Link href="/cart">cart</Link>
-          {' is empty.'}
+        
+          <Link href="/cart">Sepetiniz</Link>
+          {' şu anda boş.'}
           {typeof productsPage === 'object' && productsPage?.slug && (
             <Fragment>
               {' '}
-              <Link href={`/${productsPage.slug}`}>Continue shopping?</Link>
+              <Link href={`/${productsPage.slug}`}>Alışverişe devam edilsin mi?</Link>
             </Fragment>
           )}
         </div>
@@ -130,7 +130,7 @@ export const CheckoutPage: React.FC<{
                           <Link
                             href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/products/${id}`}
                           >
-                            edit this product in the admin panel
+                            bu ürünü panelden düzenleyebilirsiniz.
                           </Link>
                           {'.'}
                         </p>

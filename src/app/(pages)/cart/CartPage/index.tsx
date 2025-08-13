@@ -37,33 +37,32 @@ export const CartPage: React.FC<{
         <Fragment>
           {cartIsEmpty ? (
             <div className={classes.empty}>
-              Your cart is empty.
+              Sepetinize hiç ürün yok.
               {typeof productsPage === 'object' && productsPage?.slug && (
                 <Fragment>
-                  {' '}
-                  <Link href={`/${productsPage.slug}`}>Click here</Link>
-                  {` to shop.`}
+                    {` Ürünlerimize göz atmak için `}
+                  <Link href={`/${productsPage.slug}`}>buraya tıklayın.</Link>
+                
                 </Fragment>
               )}
               {!user && (
                 <Fragment>
-                  {' '}
-                  <Link href={`/login?redirect=%2Fcart`}>Log in</Link>
-                  {` to view a saved cart.`}
+                  
+                  {`Sepetinizi görüntülemek için `}
+                  <Link href={`/login?redirect=%2Fcart`}>giriş yapın.</Link>
+                
                 </Fragment>
               )}
             </div>
           ) : (
             <div className={classes.items}>
               <div className={classes.itemsTotal}>
-                {`There ${cart?.items?.length === 1 ? 'is' : 'are'} ${cart?.items?.length} item${
-                  cart?.items?.length === 1 ? '' : 's'
-                } in your cart.`}
+                {`Sepetinizde ${cart?.items?.length} ürün var.`}
                 {!user && (
                   <Fragment>
-                    {' '}
-                    <Link href={`/login?redirect=%2Fcart`}>Log in</Link>
-                    {` to save your progress.`}
+                     {`Sepet durumunuzu görmek için `}
+                    <Link href={`/login?redirect=%2Fcart`}>giriş yapın.</Link>
+                   
                   </Fragment>
                 )}
               </div>
@@ -97,12 +96,12 @@ export const CartPage: React.FC<{
                           {!stripeProductID && (
                             <p className={classes.warning}>
                               {
-                                'This product is not yet connected to Stripe. To link this product, '
+                                'Ürün henüz Stripe veritabanında yüklü değil. Yüklemek için, '
                               }
                               <Link
                                 href={`${process.env.NEXT_PUBLIC_SERVER_URL}/admin/collections/products/${id}`}
                               >
-                                edit this product in the admin panel
+                                ürünü panelden düzenleyebilirsiniz.
                               </Link>
                               {'.'}
                             </p>
@@ -114,7 +113,7 @@ export const CartPage: React.FC<{
                           </h5>
                           <div className={classes.actions}>
                             <label>
-                              Quantity &nbsp;
+                              Adet &nbsp;
                               <input
                                 type="number"
                                 className={classes.quantity}
@@ -141,11 +140,11 @@ export const CartPage: React.FC<{
                 return null
               })}
               <HR />
-              <h5 className={classes.cartTotal}>{`Total: ${cartTotal.formatted}`}</h5>
+              <h5 className={classes.cartTotal}>{`Toplam: ${cartTotal.formatted}`}</h5>
               <Button
                 className={classes.checkoutButton}
                 href={user ? '/checkout' : '/login?redirect=%2Fcheckout'}
-                label={user ? 'Checkout' : 'Login to checkout'}
+                label={user ? 'Ödemeye Geç' : 'Ödemek için giriş yapın'}
                 appearance="primary"
               />
             </div>
