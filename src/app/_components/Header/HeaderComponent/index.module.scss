@@ -1,0 +1,27 @@
+.header {
+    padding: 36px;
+ 
+}
+
+.wrap {
+//  background-color: black;   
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    gap: calc(var(--base) / 2) var(--base);
+}
+
+.logo {
+    width: 270px;
+    height: 50px;
+}
+
+
+.hide {
+    width: 170px;
+}
+
+.hide {
+    display: none;
+}

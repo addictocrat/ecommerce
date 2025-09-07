@@ -4,12 +4,8 @@ import Link from 'next/link'
 // import { Footer } from '../../../payload/payload-types'
 import { Footer as FooterType } from '../../../payload/payload-types'
 import { fetchFooter, fetchGlobals } from '../../_api/fetchGlobals'
-import { ThemeSelector } from '../../_providers/Theme/ThemeSelector'
-import { Gutter } from '../Gutter'
 import { PiAxe    } from 'react-icons/pi' // <-- iconlar buradan
-import { CMSLink } from '../Link'
-
-import classes from './index.module.scss'
+import FooterComponent from './FooterComponent'
 
 export async function Footer() {
   let footer: FooterType | null = null
@@ -17,40 +13,16 @@ export async function Footer() {
   try {
     footer = await fetchFooter()
   } catch (error) {
-    // hata yutuluyor
+    console.log(error)
   }
 
   const navItems = footer?.navItems || []
 
   return (
-    <footer className={classes.footer}>
-      <Gutter className={classes.wrap}>
-        <Link href="/">
-          <div className={classes.logoGroup}>
-           
-            <PiAxe    size={40} />
-            <span className={classes.logoText}>Eski Çağ Aletler</span>
-          </div>
-        </Link>
-        <nav className={classes.nav}>
-          <ThemeSelector />
-          {navItems.map(({ link }, i) => {
-            return <CMSLink key={i} {...link} />
-          })}
-          <Link href="/admin">Admin</Link>
-          <Link
-            href="https://github.com/payloadcms/payload/tree/main/templates/ecommerce"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Source Code
-          </Link>
-          <Link href="https://payloadcms.com" target="_blank" rel="noopener noreferrer">
-            Payload
-          </Link>
-        </nav>
-      </Gutter>
-    </footer>
+    <>
+
+    <FooterComponent footer={footer} />
+    </>
   )
 }
 

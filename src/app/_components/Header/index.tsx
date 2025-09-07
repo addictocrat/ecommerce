@@ -8,10 +8,8 @@ import { PiAxe  } from 'react-icons/pi'
 
 import { Header as HeaderType }  from '../../../payload/payload-types'
 import { fetchHeader } from '../../_api/fetchGlobals'
-import { Gutter } from '../Gutter'
-import { HeaderNav } from './Nav'
 
-import classes from './index.module.scss'
+import HeaderComponent from './HeaderComponent'
 
 export async function Header() {
   let header: HeaderType | null = null
@@ -19,33 +17,12 @@ export async function Header() {
   try {
     header = await fetchHeader()
   } catch (error) {
-    // When deploying this template on Payload Cloud, this page needs to build before the APIs are live
-    // So swallow the error here and simply render the header without nav items if one occurs
-    // in production you may want to redirect to a 404  page or at least log the error somewhere
-    // console.error(error)
+    console.log(error)
   }
 
   return (
     <>
-      <header className={classes.header}>
-        <Gutter className={classes.wrap}>
-          {/* <Link href="/">
-            <img
-              className={classes.logo}
-              alt="Payload Logo"
-              src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/ui/src/assets/payload-logo-light.svg"
-            />
-          </Link> */}
-           <Link href="/">
-          <div className={classes.logoGroup}>
-           
-            <PiAxe   size={40} />
-            <span className={classes.logoText}>Eski Çağ Aletler</span>
-          </div>
-        </Link>
-          <HeaderNav header={header} />
-        </Gutter>
-      </header>
+      <HeaderComponent header={header}/>
     </>
   )
 }
